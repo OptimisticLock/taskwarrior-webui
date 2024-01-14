@@ -1,3 +1,5 @@
 .task
 .taskrc
+backend/test
 dist
+.idea

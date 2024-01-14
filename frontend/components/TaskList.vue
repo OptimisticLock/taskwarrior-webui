@@ -27,8 +27,8 @@
 					</v-icon>
 					{{ st }}
 					<v-badge
-						v-if="st === 'pending' && classifiedTasks[st].value && classifiedTasks[st].value.length"
-						:content="classifiedTasks[st].value.length"
+						v-if="st === 'pending' && classifiedTasks[st].length"
+						:content="classifiedTasks[st].length"
 						:color="st === status ? 'primary' : 'grey'"
 						inline
 					/>
@@ -40,6 +40,7 @@
   <v-row class="px-4 pt-4">
 		<v-data-table
 			:items="classifiedTasks[status]"
+			:items-per-page="1000"
 			:headers="filteredHeaders"
 			show-select
 			item-key="uuid"

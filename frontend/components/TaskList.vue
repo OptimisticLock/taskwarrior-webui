@@ -59,7 +59,7 @@
 							fab
 							small
 							dark
-							title="Done1"
+							title="Done"
 							@click="completeTasks(selected)"
 						>
 							<v-icon>mdi-check</v-icon>
@@ -177,7 +177,7 @@
 					size="20px"
 					class="ml-2"
 					@click="completeTasks([item])"
-					title="Done2"
+					title="Done"
 				>
 					mdi-check
 				</v-icon>
@@ -427,13 +427,6 @@ export default defineComponent({
 			return route.value.query.task;
 		});
 
-		// const writeIds = async(tasks: Task[]) => {
-		// 	console.log('You selected the following tasks:');
-		// 	for (const task of tasks) {
-		// 		console.log(task.id);
-		// 	}
-		// }
-
 		const completeTasks = async (tasks: Task[]) => {
 			await store.dispatch('updateTasks', tasks.map(task => {
 				return {
@@ -507,7 +500,6 @@ export default defineComponent({
 			editTask2,
 			taskId888,
 			deleteTasks,
-	//		writeIds,
 			completeTasks,
 			restoreTasks,
 			showTaskDialog,

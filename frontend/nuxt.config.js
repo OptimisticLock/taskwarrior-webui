@@ -1,6 +1,7 @@
 export default {
 	server: {
-		port: 8080
+		port: 8080,
+		host: '0.0.0.0'
 	},
 
 	/*
@@ -19,7 +20,7 @@ export default {
   */
 	head: {
 		titleTemplate: '%s',
-		title: 'Taskwarrior Webui',
+		title: 'My Tasks',
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },

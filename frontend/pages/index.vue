@@ -1,5 +1,8 @@
 <template>
 	<div class="px-md-6 px-lg-12">
+		<options-test />
+		<composition-test />
+
 		<v-row class="px-4 pt-4">
 			<div class="headline d-flex align-center">{{ mode }}</div>
 			<template v-if="mode === 'Projects'">
@@ -47,8 +50,12 @@ import { defineComponent, ref, computed, watch, ComputedRef, useStore, useContex
 import TaskList from '../components/TaskList.vue';
 import { Task } from 'taskwarrior-lib';
 import { accessorType  } from "../store";
+import CompositionTest from '~/components/testing/composition-test.vue';
+import OptionsTest from '~/components/testing/options-test.vue';
+
 
 export default defineComponent({
+	components: {CompositionTest, OptionsTest },
 	setup() {
 		const store = useStore<typeof accessorType>();
 		const context = useContext();

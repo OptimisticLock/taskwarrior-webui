@@ -195,6 +195,16 @@
 				>
 					mdi-pencil
 				</v-icon>
+
+				<v-icon
+					class="ml-2"
+					size="20px"
+					@click="editTask2(item)"
+					title="Edit"
+				>
+					mdi-eye
+				</v-icon>
+
 				<v-icon
 					v-show="status !== 'deleted'"
 					class="ml-2"
@@ -384,6 +394,12 @@ export default defineComponent({
 			currentTask.value = _.cloneDeep(task);
 		};
 
+		const editTask2 = (task: Task) => {
+			console.log('EditTask2');
+			showTaskDialog.value = true;
+			currentTask.value = _.cloneDeep(task);
+		};
+
 		const completeTasks = async (tasks: Task[]) => {
 			await store.dispatch('updateTasks', tasks.map(task => {
 				return {
@@ -454,6 +470,7 @@ export default defineComponent({
 			newTask,
 			currentTask,
 			editTask,
+			editTask2,
 			deleteTasks,
 			completeTasks,
 			restoreTasks,

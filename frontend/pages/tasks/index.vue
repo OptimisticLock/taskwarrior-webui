@@ -1,9 +1,9 @@
 <template>
 	<div class="px-md-6 px-lg-12">
-<!--		<options-test />-->
-<!--		<composition-test />-->
+		This is pages/tasks/index.vue
+		<options-test />
+		<composition-test />
 
-		This is pages/index.vue
 		<v-row class="px-4 pt-4">
 			<div class="headline d-flex align-center">{{ mode }}</div>
 			<template v-if="mode === 'Projects'">
@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, watch, ComputedRef, useStore, useContext } from '@nuxtjs/composition-api';
-import TaskList from '../components/TaskList.vue';
+import TaskList from '../../components/TaskList.vue';
 import { Task } from 'taskwarrior-lib';
 import { accessorType  } from "../store";
 import CompositionTest from '~/components/testing/composition-test.vue';

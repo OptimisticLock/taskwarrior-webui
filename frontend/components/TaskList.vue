@@ -404,6 +404,7 @@ export default defineComponent({
 		};
 
 		const newTask = () => {
+			router!.push('/?new=true');
 			showTaskDialog.value = true;
 			currentTask.value = null;
 		};

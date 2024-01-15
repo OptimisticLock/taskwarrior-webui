@@ -6,7 +6,7 @@
 		@keydown.esc="closeDialog"
 	>
 		<v-card>
-			Hello, this is task {{ taskId888 }} aka {{ task?.id }} !!!
+			Hello, this is task {{ taskId888 }} aka {{ task?.id }} and new={{ new888 }}!!!
 
 			<v-card-title>
 				{{ task ? 'Edit Task' : 'New Task' }}
@@ -156,6 +156,10 @@ export default defineComponent({
 			return route.value.query.task;
 		});
 
+		const new888 = computed(() => {
+			return route.value.query.new;
+		});
+
 		const projects = computed(() => store.getters.projects);
 		const tags = computed(() => store.getters.tags);
 
@@ -271,7 +275,8 @@ export default defineComponent({
 			showDialog,
 			route,
 			router,
-			taskId888
+			taskId888,
+			new888
 		};
 	}
 });

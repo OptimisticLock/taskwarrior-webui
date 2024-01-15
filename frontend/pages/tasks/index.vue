@@ -51,7 +51,7 @@
 import { defineComponent, ref, computed, watch, ComputedRef, useStore, useContext } from '@nuxtjs/composition-api';
 import TaskList from '../../components/TaskList.vue';
 import { Task } from 'taskwarrior-lib';
-import { accessorType  } from "../store";
+import { accessorType  } from "../../store";
 import CompositionTest from '~/components/testing/composition-test.vue';
 import OptionsTest from '~/components/testing/options-test.vue';
 

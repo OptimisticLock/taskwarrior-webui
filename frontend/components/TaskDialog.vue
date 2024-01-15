@@ -6,7 +6,7 @@
 		@keydown.esc="closeDialog"
 	>
 		<v-card>
-			Hello, this is task {{ taskId888 }} aka {{ task.id }} !!!
+			Hello, this is task {{ taskId888 }} aka {{ task?.id }} !!!
 
 			<v-card-title>
 				{{ task ? 'Edit Task' : 'New Task' }}

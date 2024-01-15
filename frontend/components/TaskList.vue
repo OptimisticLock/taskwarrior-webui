@@ -231,6 +231,9 @@ import moment from 'moment';
 import urlRegex from 'url-regex-safe';
 import normalizeUrl from 'normalize-url';
 import { accessorType  } from "../store";
+//import { useRouter, useRoute } from 'vue-router';
+import { useContext } from '@nuxtjs/composition-api';
+
 
 function displayDate(str?: string) {
 	if (!str)
@@ -300,6 +303,17 @@ export default defineComponent({
 	setup(props) {
 		const store = useStore<typeof accessorType>();
 		const selected = ref([] as Task[]);
+		const context = useContext();
+
+		const route = context.route;
+		const router = context.app.router;
+
+		const route33 = 33;
+	//	console.log('Context ##########', context);
+	//	route.value.query.a
+
+		// const router = useRouter();
+		// const route = useRoute();
 
 		const status = ref('pending');
 		const allStatus = ['pending', 'waiting', 'completed', 'deleted', 'recurring'];
@@ -363,6 +377,7 @@ export default defineComponent({
 		});
 
 		const showTaskDialog = ref(false);
+		const showTask2Dialog = ref(false);
 		const currentTask: Ref<Task | null> = ref(null);
 
 		const showSyncBtn = computed(() => {
@@ -395,8 +410,8 @@ export default defineComponent({
 		};
 
 		const editTask2 = (task: Task) => {
-			console.log('EditTask2');
-			showTaskDialog.value = true;
+			console.log('EditTask2: task: ', route.value.query.task);
+			showTask2Dialog.value = true;
 			currentTask.value = _.cloneDeep(task);
 		};
 
@@ -475,15 +490,20 @@ export default defineComponent({
 			completeTasks,
 			restoreTasks,
 			showTaskDialog,
+			showTask2Dialog,
 			showConfirmationDialog,
 			showColumnDialog,
 			confirmation,
 			displayDate,
 			rowClass,
+			route,
+	//		route33,
+			router,
 
 			TaskDialog,
 			ConfirmationDialog,
 			ColumnDialog,
+
 		};
 	}
 });

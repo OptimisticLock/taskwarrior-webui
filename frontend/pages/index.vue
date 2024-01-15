@@ -19,6 +19,7 @@
 					hide-details
 				/>
 				<div class="ml-6 d-flex align-center">
+					Progress circular
 					<v-progress-circular
 						:size="54"
 						:width="5"

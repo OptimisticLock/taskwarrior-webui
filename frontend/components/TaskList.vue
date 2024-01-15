@@ -187,6 +187,9 @@
 				>
 					mdi-restore
 				</v-icon>
+
+				TaskId: {{ taskId888 }}
+
 				<v-icon
 					class="ml-2"
 					size="20px"
@@ -410,10 +413,17 @@ export default defineComponent({
 		};
 
 		const editTask2 = (task: Task) => {
-			console.log('EditTask2: task: ', route.value.query.task);
-			showTask2Dialog.value = true;
+		//	const taskId = +route.value.query.task;
+		//	console.log('EditTask2: task: ', taskId);
+			router!.push('/?task=' + task.id);
+			showTaskDialog.value = true;
+	//		showTask2Dialog.value = true;
 			currentTask.value = _.cloneDeep(task);
 		};
+
+		const taskId888 = computed(() => {
+			return route.value.query.task;
+		});
 
 		const completeTasks = async (tasks: Task[]) => {
 			await store.dispatch('updateTasks', tasks.map(task => {
@@ -486,6 +496,7 @@ export default defineComponent({
 			currentTask,
 			editTask,
 			editTask2,
+			taskId888,
 			deleteTasks,
 			completeTasks,
 			restoreTasks,

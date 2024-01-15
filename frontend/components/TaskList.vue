@@ -53,13 +53,25 @@
 				<v-row class="px-4">
 					<!-- Batch actions -->
 					<div class="pl-2 pt-2" v-show="selected.length">
+
+						<v-btn
+							class="ma-1 yellow"
+							fab
+							small
+							dark
+							title="log"
+							@click="logTasks(selected)"
+						>
+							<v-icon>mdi-check</v-icon>
+						</v-btn>
+
 						<v-btn
 							v-show="status === 'pending'"
 							class="ma-1 green"
 							fab
 							small
 							dark
-							title="Done"
+							title="Done1"
 							@click="completeTasks(selected)"
 						>
 							<v-icon>mdi-check</v-icon>
@@ -177,7 +189,7 @@
 					size="20px"
 					class="ml-2"
 					@click="completeTasks([item])"
-					title="Done"
+					title="Done2"
 				>
 					mdi-check
 				</v-icon>
@@ -427,6 +439,13 @@ export default defineComponent({
 			return route.value.query.task;
 		});
 
+		const logTasks = async (tasks: Task[]) => {
+			const t = tasks.map((task => task.id));
+			// for (const task of tasks) {
+			// 	console.log(task.id);
+			console.log(t);
+		};
+
 		const completeTasks = async (tasks: Task[]) => {
 			await store.dispatch('updateTasks', tasks.map(task => {
 				return {
@@ -500,6 +519,7 @@ export default defineComponent({
 			editTask2,
 			taskId888,
 			deleteTasks,
+			logTasks,
 			completeTasks,
 			restoreTasks,
 			showTaskDialog,

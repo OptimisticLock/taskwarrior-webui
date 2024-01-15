@@ -11,6 +11,7 @@
 		<v-row class="px-4 pt-4">
 			<v-btn-toggle v-model="status" mandatory background-color="rgba(0, 0, 0, 0)">
 			<v-row class="pa-3">
+				aaa
 				<v-btn
 					v-for="st in allStatus"
 					:key="st"
@@ -33,6 +34,7 @@
 						inline
 					/>
 				</v-btn>
+				bbb
 			</v-row>
 		</v-btn-toggle>
   </v-row>
@@ -51,7 +53,7 @@
 		>
 			<template v-slot:top>
 				<v-row class="px-4">
-					<!-- Batch actions -->
+					<!-- Batch actions -->ccc
 					<div class="pl-2 pt-2" v-show="selected.length">
 
 						<v-btn
@@ -237,7 +239,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useStore, computed, reactive, ref, ComputedRef, Ref } from '@nuxtjs/composition-api';
+import {defineComponent, useStore, computed, reactive, ref, ComputedRef, Ref, watch} from '@nuxtjs/composition-api';
 import { Task } from 'taskwarrior-lib';
 import _ from 'lodash';
 import TaskDialog from '../components/TaskDialog.vue';
@@ -324,12 +326,16 @@ export default defineComponent({
 		const route = context.route;
 		const router = context.app.router;
 
-		const route33 = 33;
-	//	console.log('Context ##########', context);
-	//	route.value.query.a
 
-		// const router = useRouter();
-		// const route = useRoute();
+		// Watcher for 'selected'
+		watch(selected, (tasks: Task[]) => {
+			const str = tasks.length ? tasks.map(task => task.id).join(',') : '';
+			// for (const task of tasks) {
+			// 	console.log(task.id);
+			console.log(`task ${str} \n\n`);
+		});
+
+		const route33 = 33;
 
 		const status = ref('pending');
 		const allStatus = ['pending', 'waiting', 'completed', 'deleted', 'recurring'];
@@ -439,11 +445,12 @@ export default defineComponent({
 			return route.value.query.task;
 		});
 
-		const logTasks = async (tasks: Task[]) => {
-			const t = tasks.map((task => task.id));
+		const logTasks = (tasks: Task[]) => {
+			const t = tasks.map(task => task.id);
+			const str = t.join(',');
 			// for (const task of tasks) {
 			// 	console.log(task.id);
-			console.log(t);
+			console.log('task ', str, ' \n\n');
 		};
 
 		const completeTasks = async (tasks: Task[]) => {

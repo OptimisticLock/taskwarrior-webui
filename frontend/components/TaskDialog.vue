@@ -6,6 +6,8 @@
 		@keydown.esc="closeDialog"
 	>
 		<v-card>
+			Hello, this is task {{ taskId888 }} aka {{ task.id }} !!!
+
 			<v-card-title>
 				{{ task ? 'Edit Task' : 'New Task' }}
 			</v-card-title>
@@ -130,7 +132,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useStore, watch, computed, ref } from '@nuxtjs/composition-api';
+import {defineComponent, useStore, watch, computed, ref, useContext} from '@nuxtjs/composition-api';
 import { Task } from 'taskwarrior-lib';
 import { accessorType  } from "../store";
 
@@ -144,6 +146,15 @@ export default defineComponent({
 	},
 	setup(props, ctx) {
 		const store = useStore<typeof accessorType>();
+
+		const context = useContext();
+
+		const route = context.route;
+		const router = context.app.router;
+
+		const taskId888 = computed(() => {
+			return route.value.query.task;
+		});
 
 		const projects = computed(() => store.getters.projects);
 		const tags = computed(() => store.getters.tags);
@@ -257,7 +268,10 @@ export default defineComponent({
 			closeDialog,
 			reset,
 			submit,
-			showDialog
+			showDialog,
+			route,
+			router,
+			taskId888
 		};
 	}
 });

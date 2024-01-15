@@ -169,6 +169,9 @@
 			</template>
 
 			<template v-slot:item.actions="{ item }">
+
+				{{ item.id }}
+
 				<v-icon
 					v-show="status === 'pending'"
 					size="20px"
@@ -187,8 +190,6 @@
 				>
 					mdi-restore
 				</v-icon>
-
-				TaskId: {{ taskId888 }}
 
 				<v-icon
 					class="ml-2"

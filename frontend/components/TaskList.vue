@@ -169,6 +169,9 @@
 			</template>
 
 			<template v-slot:item.actions="{ item }">
+
+				{{ item.id }}
+
 				<v-icon
 					v-show="status === 'pending'"
 					size="20px"
@@ -211,7 +214,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useStore, computed, reactive, ref, ComputedRef, Ref } from '@nuxtjs/composition-api';
+import {defineComponent, useStore, computed, reactive, ref, ComputedRef, Ref, watch} from '@nuxtjs/composition-api';
 import { Task } from 'taskwarrior-lib';
 import _ from 'lodash';
 import TaskDialog from '../components/TaskDialog.vue';
@@ -290,6 +293,11 @@ export default defineComponent({
 	setup(props) {
 		const store = useStore<typeof accessorType>();
 		const selected = ref([] as Task[]);
+
+		watch(selected, (tasks: Task[]) => {
+			const taskIds = tasks.length ? tasks.map(task => task.id).join(',') : '';
+			console.log(`task ${taskIds} \n\n`);
+		});
 
 		const status = ref('pending');
 		const allStatus = ['pending', 'waiting', 'completed', 'deleted', 'recurring'];
